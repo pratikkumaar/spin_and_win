@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
 :root {
   --bg-color: #083344;
   --bg-gradient: radial-gradient(circle at 50% 0%, #06b6d4 0%, #0e7490 40%, #083344 100%);
@@ -14,8 +16,6 @@
   --font-family: 'Cinzel', 'Playfair Display', serif;
   /* Elegant serif font */
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
 
 *,
 *::before,
@@ -96,7 +96,7 @@ button {
 
 .btn-primary {
   background: linear-gradient(to bottom, #fde68a 0%, #d97706 100%);
-  color: #841f3f;
+  color: #ffffff;
   padding: 1.2rem 3rem;
   border-radius: 9999px;
   font-weight: 700;
@@ -112,6 +112,10 @@ button {
 .btn-primary:hover {
   transform: scale(1.05);
   box-shadow: 0 0 30px rgba(217, 119, 6, 0.8);
+}
+
+.spin-button-asset:hover:not(:disabled) {
+  transform: scale(1.05);
 }
 
 .btn-primary:disabled {

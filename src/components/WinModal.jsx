@@ -1,6 +1,6 @@
 import React from 'react';
 
-const WinModal = ({ prize, onReset }) => {
+const WinModal = ({ prize, icon, onReset }) => {
     return (
         <div
             className="animate-fade-in"
@@ -25,15 +25,29 @@ const WinModal = ({ prize, onReset }) => {
                     maxWidth: '450px',
                     width: '90%',
                     background: 'rgba(255, 255, 255, 0.1)',
-                    border: '2px solid #fbbf24', // Gold border
+                    border: '0.5px solid #fbbf24', // Gold border
                     borderRadius: '2.5rem',
                     padding: '3rem',
                     boxShadow: '0 0 50px rgba(0,0,0,0.5), 0 0 20px rgba(251, 191, 36, 0.3)'
                 }}
             >
+                {icon && (
+                    <div style={{ marginBottom: '1.5rem' }}>
+                        <img
+                            src={icon}
+                            alt={prize}
+                            style={{
+                                width: '120px',
+                                height: 'auto',
+                                filter: 'drop-shadow(0 0 10px rgba(251, 191, 36, 0.5))'
+                            }}
+                        />
+                    </div>
+                )}
+
                 <h2 style={{
                     fontSize: '3rem',
-                    marginBottom: '1.5rem',
+                    marginBottom: '1rem',
                     color: '#fbbf24',
                     fontFamily: "'Cinzel', serif",
                     fontWeight: 900

@@ -1,5 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import './Wheel.css';
+import icon5per from '../assets/spinicons/5per.png';
+import iconChocolate from '../assets/spinicons/chocolate.png';
+import iconCouple from '../assets/spinicons/couple.png';
+import iconDinner from '../assets/spinicons/dinner.png';
+import iconNeckless from '../assets/spinicons/neckless.png';
+import iconPendent from '../assets/spinicons/pendent.png';
+import iconTeddy from '../assets/spinicons/teddy.png';
+import iconRose from '../assets/spinicons/rose.png';
+import pointerImg from '../assets/pointer.png';
+import centerHeartImg from '../assets/center_heart.png';
 
 // --- CONFIGURATION ---
 // 1. COLORS: Define the segment colors here.
@@ -13,16 +23,15 @@ const PALETTE = {
 };
 
 // 2. ICONS: Map your custom icon components or image URLs here.
-// The user (you) can replace these emoji strings with <img src="..." /> or SVGs.
 const ICONS = {
-    'Youlry.com': '🎟️',
-    'Chocolate': '🍫',
-    'Roses': '🌹',
-    'Teddy': '🧸',
-    'Necklace': '📿',
-    'Pendant': '✨',
-    'Dinner': '🍽️',
-    'Watch': '⌚'
+    'Youlry.com': icon5per,
+    'Chocolate': iconChocolate,
+    'Roses': iconRose,
+    'Teddy': iconTeddy,
+    'Necklace': iconNeckless,
+    'Pendant': iconPendent,
+    'Dinner': iconDinner,
+    'Watch': iconCouple
 };
 
 const getIcon = (label) => {
@@ -113,8 +122,9 @@ const Wheel = ({ segments, winnerIndex, isSpinning, onSpinComplete }) => {
         // --- Customization Config ---
         const label = segments[index];
         const isGrandPrize = label.includes('Necklace');
+        const icon = getIcon(label);
 
-        // Text Placement (Push text further out)
+        // ... existing text placement logic ...
         const textRadius = 38;
         const textX = 50 + textRadius * Math.cos(midAngle * Math.PI / 180);
         const textY = 50 + textRadius * Math.sin(midAngle * Math.PI / 180);
@@ -158,18 +168,28 @@ const Wheel = ({ segments, winnerIndex, isSpinning, onSpinComplete }) => {
                     </text>
                 </g>
 
-                {/* Icon Group - REPLACE WITH YOUR <image> TAG HERE */}
+                {/* Icon Group */}
                 <g transform={`translate(${iconX}, ${iconY}) rotate(${itemsRotation})`}>
-                    {/* Placeholder for custom icon. User can replace <text> with <image x="-5" y="-5" width="10" height="10" href={myIconUrl} /> */}
-                    <text
-                        fontSize="9"
-                        textAnchor="middle"
-                        dominantBaseline="middle"
-                        transform="rotate(180)" // Flip emoji to face center correctly
-                        style={{ filter: isGrandPrize ? 'none' : 'grayscale(0.2)' }}
-                    >
-                        {getIcon(label)}
-                    </text>
+                    {typeof icon === 'string' && icon.length <= 2 ? (
+                        <text
+                            fontSize="9"
+                            textAnchor="middle"
+                            dominantBaseline="middle"
+                            transform="rotate(180)"
+                            style={{ filter: isGrandPrize ? 'none' : 'grayscale(0.2)' }}
+                        >
+                            {icon}
+                        </text>
+                    ) : (
+                        <image
+                            href={icon}
+                            x="-6"
+                            y="-6"
+                            width="12"
+                            height="12"
+                            transform={`rotate(${label.includes('Roses') ? 270 : 180})`}
+                        />
+                    )}
                 </g>
             </g>
         );
@@ -177,8 +197,8 @@ const Wheel = ({ segments, winnerIndex, isSpinning, onSpinComplete }) => {
 
     return (
         <div className="wheel-container">
-            {/* Pointer facing down from top (Heart) */}
-            <div className="wheel-pointer" />
+            {/* Pointer facing down from top */}
+            <img src={pointerImg} className="wheel-pointer" alt="pointer" />
 
             <div
                 className="wheel-rotate"
@@ -203,7 +223,7 @@ const Wheel = ({ segments, winnerIndex, isSpinning, onSpinComplete }) => {
             <div className="wheel-center">
                 {/* Rings created via CSS */}
                 <div className="wheel-center-inner">
-                    <div className="wheel-center-heart">❤</div>
+                    <img src={centerHeartImg} className="wheel-center-img" alt="center heart" />
                 </div>
             </div>
         </div>

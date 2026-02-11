@@ -3,11 +3,31 @@ import Wheel from './components/Wheel';
 import WinModal from './components/WinModal';
 import logo from './assets/arnica_logo.png';
 import valentineLogo from './assets/wheel_of_valentine.png';
+import tapToSpinImg from './assets/tap_to_spin.png';
 import './components/Wheel.css'; // Ensure CSS is loaded
 
-// Initial configuration logic to be used if no saved state exists
+// Spin Icons
+import icon5per from './assets/spinicons/5per.png';
+import iconChocolate from './assets/spinicons/chocolate.png';
+import iconCouple from './assets/spinicons/couple.png';
+import iconDinner from './assets/spinicons/dinner.png';
+import iconNeckless from './assets/spinicons/neckless.png';
+import iconPendent from './assets/spinicons/pendent.png';
+import iconTeddy from './assets/spinicons/teddy.png';
+import iconRose from './assets/spinicons/rose.png';
+
+const PRIZE_ICONS = {
+  '5% off\nYoulry.com Voucher': icon5per,
+  'Chocolate Boxes': iconChocolate,
+  'Roses': iconRose,
+  'Teddy Bear': iconTeddy,
+  'Gold 22K Necklace': iconNeckless,
+  'Gold Pendant': iconPendent,
+  'Dinner Date at\nLord of the Drinks': iconDinner,
+  'Couple Watch': iconCouple
+};
 const INITIAL_SEGMENT_DATA = [
-  { label: '5% off\nYoulry.com Voucher', weight: 5 },
+  { label: '5% off\nYoulry.com Voucher', weight: 30 },
   { label: 'Chocolate Boxes', weight: 13 },
   { label: 'Roses', weight: 3 },
   { label: 'Teddy Bear', weight: 8 },
@@ -158,12 +178,23 @@ function App() {
           <div style={{ marginTop: '3rem', minHeight: '60px' }}>
             {totalAvailableSpins > 0 ? (
               <button
-                className="btn-primary"
                 onClick={handleSpin}
                 disabled={isSpinning}
-                style={{ opacity: isSpinning ? 0.7 : 1, cursor: isSpinning ? 'not-allowed' : 'pointer' }}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  padding: 0,
+                  cursor: isSpinning ? 'not-allowed' : 'pointer',
+                  opacity: isSpinning ? 0.6 : 1,
+                  transition: 'transform 0.2s ease',
+                }}
+                className="spin-button-asset"
               >
-                {isSpinning ? 'Spinning...' : 'TAP TO SPIN'}
+                <img
+                  src={tapToSpinImg}
+                  alt="Tap to Spin"
+                  style={{ width: '280px', height: 'auto' }}
+                />
               </button>
             ) : (
               <div style={{
@@ -184,6 +215,7 @@ function App() {
       {showModal && (
         <WinModal
           prize={INITIAL_SEGMENT_DATA[winnerIndex]?.label}
+          icon={PRIZE_ICONS[INITIAL_SEGMENT_DATA[winnerIndex]?.label]}
           onReset={handleReset}
         />
       )}

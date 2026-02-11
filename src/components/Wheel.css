@@ -36,32 +36,16 @@
 /* Pointer - Gold Heart at Top */
 .wheel-pointer {
     position: absolute;
-    top: -24px;
+    top: -30px;
+    /* Adjusted to sit better on the rim */
     left: 50%;
     transform: translateX(-50%);
-    width: 48px;
-    height: 48px;
+    width: 60px;
+    /* Slightly larger for the image asset */
+    height: auto;
     z-index: 50;
-    /* Create Gold Heart Shape using CSS or unicode */
-    filter: drop-shadow(0 4px 2px rgba(0, 0, 0, 0.4));
-}
-
-.wheel-pointer::before {
-    content: '❤';
-    font-size: 56px;
-    color: transparent;
-    background: linear-gradient(to bottom, #fef3c7, #f59e0b, #b45309);
-    -webkit-background-clip: text;
-    background-clip: text;
-    position: absolute;
-    top: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    /* Stroke effect simulation */
-    text-shadow:
-        0 0 0 #fff,
-        0 0 2px #d97706;
-    /* Outline */
+    filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.4));
+    pointer-events: none;
 }
 
 /* Center Cap Structure */
@@ -101,14 +85,13 @@
     /* Inner gold border */
 }
 
-/* Center Heart Icon */
-.wheel-center-heart {
-    font-size: 32px;
-    color: transparent;
-    background: linear-gradient(135deg, #fef3c7 0%, #d97706 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    filter: drop-shadow(0 1px 1px rgba(180, 83, 9, 0.5));
+/* Center Heart Image */
+.wheel-center-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 0px;
+    /* Give it some breathing room from the gold rim */
 }
 
 /* Animation for idle state (optional) */
